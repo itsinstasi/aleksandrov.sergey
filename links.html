@@ -9,8 +9,8 @@
     <script async src="https://use.fontawesome.com/d758daec41.js"></script>   
 	<link rel="stylesheet" href="css/style.css"/>
     
-    <meta name="description" content="ммкц новости мебельный бизнес закрытый клуб знаний мебель ного бизнеса ас мебельных продаж дистанционный курс подготовки продавцов техники мебели методика по работе с клиентом обучение аса">
-    <meta name="keywords" content="ммкц новости мебельный бизнес закрытый клуб знаний мебель ного бизнеса ас мебельных продаж дистанционный курс подготовки продавцов техники мебели методика по работе с клиентом обучение аса" />
+    <meta name="description" content="ммкц новости мебельный бизнес закрытый клуб знаний мебель ного бизнеса ас мебельных продаж дистанционный курс подготовки продавцов техники мебели методика по работе с клиентом книгиаса менеджмент">
+    <meta name="keywords" content="ммкц новости мебельный бизнес закрытый клуб знаний мебель ного бизнеса ас мебельных продаж дистанционный курс подготовки продавцов техники мебели методика по работе с клиентом книгиаса менеджмент" />
     
     <link rel="apple-touch-icon" sizes="57x57" href="img/favicon/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="img/favicon/apple-icon-60x60.png">
@@ -39,7 +39,7 @@
     <meta property="og:image:width" content="121"/>
     <meta property="og:image:height" content="121"/>
     <meta property="og:title" content="Сергей Александров" />
-    <meta property="og:description" content="ммкц новости мебельный бизнес закрытый клуб знаний мебель ного бизнеса ас мебельных продаж дистанционный курс подготовки продавцов техники мебели методика по работе с клиентом обучение аса" />
+    <meta property="og:description" content="ммкц новости мебельный бизнес закрытый клуб знаний мебель ного бизнеса ас мебельных продаж дистанционный курс подготовки продавцов техники мебели методика по работе с клиентом книгиаса менеджмент" />
     <meta property="og:locale" content="Ru-ru" />
     <meta property="og:site_name" content="aleksandrov.sergey" />
 
@@ -66,6 +66,9 @@
 							<div class="header__logo-txt">aleksandrov.sergey</div>
 						</a>
 						<div class="header__title">Сергей Александров</div>
+					</div>
+					<div id="settingsContainer" class="header__right" style="display:none">
+						<button onclick="window.open('http://itsinsta.site/page.html?project=aleksandrov.sergey');" class="btn stories-popup__buy">Настроить</button>
 					</div>
 				</div>
 			</div>
@@ -115,6 +118,14 @@
 									<a href="./tags/./distantsionnyy-kurs-podgotovki-prodavtsov.html">
 										<div class="stories__slide-pic" style="background-image: url(./img/og/distantsionnyy-kurs-podgotovki-prodavtsov.png);"></div>
 										<div class="stories__slide-txt" style="">дистанционный курс подготовки продавцов</div>
+									</a>
+								</div>
+							</div>
+							<div class="swiper-slide">
+								<div class="stories__slide" title="техники продаж мебели">
+									<a href="./tags/./tekhniki-prodazh-mebeli.html">
+										<div class="stories__slide-pic" style="background-image: url(./img/og/tekhniki-prodazh-mebeli.png);"></div>
+										<div class="stories__slide-txt" style="">техники продаж мебели</div>
 									</a>
 								</div>
 							</div>
@@ -190,7 +201,34 @@ function getFormData($form){
     return indexed_array;
 }
 
+var getUrlParameter = function getUrlParameter(sParam) {
+    var sPageURL = window.location.search.substring(1),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+        }
+    }
+}
+
 $(document).ready(function(){
+	var lid = getUrlParameter("lid");
+	if (lid) {
+        localStorage.setItem("hasToken", true);
+
+		$("#settingsContainer").show();
+		$("#settingsContainer").children("btn").first().attr("onclick", 'window.open("http://itsinsta.site/invite.html?invitationId="' + lid + ')');
+	}
+	else if (localStorage.getItem("hasToken"))
+	{
+		$("#settingsContainer").show();
+	}
+
     $('form').submit(function(){
 	event.preventDefault(); //prevent default action 
 
